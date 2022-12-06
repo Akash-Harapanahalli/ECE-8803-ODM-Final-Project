@@ -1,6 +1,7 @@
 import numpy as np
 from LinearSystem import LinearSystem
 from LinearQuadraticRegulator import LinearQuadraticRegulator
+import time
 
 # Gradient Perturbation Controller for inf horizon LQR cost formulation
 class GradientPerturbationLQR (LinearQuadraticRegulator) :
@@ -8,6 +9,7 @@ class GradientPerturbationLQR (LinearQuadraticRegulator) :
         super().__init__(sys, Q, R, S0, Shor)
         self.h = h
         self.M = np.array([np.zeros_like(sys.B.T,dtype=np.float64) for _ in range(self.h)]) if M is None else M
+        self.M0 = np.array([np.zeros((sys.A.shape[0],1))])
         self.w = np.array([np.zeros((sys.A.shape[0],1)) for _ in range(2*self.h+1)])
         self.x = np.array([np.zeros((sys.A.shape[0],1)) for _ in range(self.h)])
         self._u = None
@@ -36,7 +38,7 @@ class GradientPerturbationLQR (LinearQuadraticRegulator) :
             x = self.sys.f(x, u) + self.w[self.h-1-t]
         return self.c(x,u)
 
-    def gl (self, eps=0.01) :
+    def gl (self, eps=0.0001) :
         gM = np.empty_like(self.M)
         M = np.copy(self.M)
         L = self.l(self.M)
