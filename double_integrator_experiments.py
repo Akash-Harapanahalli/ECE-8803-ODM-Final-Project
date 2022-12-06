@@ -44,7 +44,7 @@ def make_method (method) :
 
 x0 = np.array([[1],[0]])
 
-fig, axs = plt.subplots(len(experiments),len(experiments[0]), dpi=1000, figsize=[9,6], squeeze=False)
+fig, axs = plt.subplots(len(experiments),len(experiments[0]), dpi=100, figsize=[9,6], squeeze=False)
 fig.subplots_adjust(left=0.075,right=0.975,bottom=0.1,top=0.95, hspace=0.2, wspace=0.2)
 
 for e_i,E in enumerate(experiments) :
