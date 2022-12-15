@@ -10,7 +10,8 @@ T = 400
 tt = np.linspace(0,Δ*T,T)
 
 experiments = [
-    ['const 0', 'gauss 1']
+    ['const 0', 'gauss 0'],
+    ['const 1', 'gauss 1']
     # ['const 0', 'const 1']
     # ['const 0', 'gauss 0'],
     # ['const 1', 'gauss 1'],
@@ -56,7 +57,7 @@ def make_method (method) :
 
 x0 = np.array([5,5,5,0,0,0]).reshape(-1,1)
 
-fig, axs = plt.subplots(len(experiments),len(experiments[0]), dpi=1000, figsize=[9,4.5], squeeze=False, subplot_kw=dict(projection='3d'))
+fig, axs = plt.subplots(len(experiments),len(experiments[0]), dpi=100, figsize=[9,9], squeeze=False, subplot_kw=dict(projection='3d'))
 # fig, axs = plt.subplots(len(experiments),len(experiments[0]), dpi=100, figsize=[9,6], squeeze=False)
 fig.subplots_adjust(left=0.05,right=0.95,bottom=0.05,top=0.95)
 
@@ -85,5 +86,5 @@ for e_i,E in enumerate(experiments) :
         if dist.split()[0] == 'const' :
             str = np.array2string(d.w().reshape(-1),separator=',')
             axs[e_i,e_j].set_title(f'$w_t={str}$')
-plt.savefig('figures/quadrotor/experiments.png')
+plt.savefig('figures/quadrotor/experiments.pdf')
 plt.show()

@@ -69,5 +69,5 @@ for e_i,E in enumerate(experiments) :
         axs[e_i,e_j].set_ylabel('$x_1$',rotation=0)
         if e_i == len(experiments) - 1 :
             axs[e_i,e_j].set_xlabel('t')
-plt.savefig('figures/double_integrator/experiments.png')
+plt.savefig('figures/double_integrator/experiments.pdf')
 plt.show()
